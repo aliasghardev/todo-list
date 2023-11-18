@@ -5,7 +5,7 @@
 ![todo](https://github.com/aliasghardev/todo-list/assets/144837096/f8318508-010d-40c7-9888-be186d0fdd6a)
 
 
-- [Demo Project](https://aliasghardev.github.io/personal-website-1/)
+- [Demo Project](https://aliasghardev.github.io/todo-list/)
 
 - Developed by aliasghar gholami
 
