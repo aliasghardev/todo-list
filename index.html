@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/output.css">
+    <link rel="stylesheet" href="font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/master.css">
+
+    <style>
+        ul>li{
+            width: 100%;
+            height: 50px;
+            display: flex;
+            flex-wrap: wrap;
+            background: #ffffff;
+            transition: 1s;
+            margin: 3px 0;
+            >button{
+                color: red;
+                font-size: 30px;
+            }
+            >input{
+                font-size: 40px;
+            }
+            >h2{
+                position: relative;
+                font-size: 20px;
+                width: 90%;
+                >span {
+                width: 0;
+                height: 5px;
+                position: absolute;
+                left: 0;
+                top: 48%;
+                background-color: rgb(212, 255, 0);
+                border-radius: 2px;
+                transition: 1s;
+                }
+            }
+        }
+        .menu {
+            width: 500px;
+            height: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+            border: 1px solid black;
+
+        }
+        .close{
+            transform: translateX(-1500px);
+        }
+    </style>
+</head>
+<body>
+    <main class="w-full h-screen font-primary bg-[url('../img/bg.jpeg')] bg-cover bg-center">
+        <section class="w-full    ">
+            <h2 class="p-14 w-full capitalize text-5xl font-bold flex justify-center text-white">daily program list</h2>
+            <div class=" w-full flex justify-center">
+                <div id="todo" class="w-1/3 ">
+                    <input id="inp" class="w-5/6 h-10" type="text">
+                    <span onclick="myTodo()" class="w-1/6 bg-blue-500 p-3 ml-3 cursor-pointer capitalize rounded">add</span>
+                    <ul id="list" class="w-1/3"></ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        let inp = document.getElementById('inp')
+        const myTodo = () => {
+        let temp = inp.value
+        if (
+            (temp == "") ||
+            (temp == " ") ||
+            (temp == "\n") ||
+            (temp == null) ||
+            (temp.length < 3)
+        ) {
+            alert('try again...')
+        } else {
+            let _li = document.createElement('li')
+            _li.classList.add('menu')
+            _li.innerHTML = `
+                <input onclick='_del(this)' type='checkbox'/>
+                <h2><span></span><strong contenteditable='true'>${temp}</strong></h2>
+                <button onclick='_close(this)'><i class="bi bi-trash3-fill"></i></button>
+            `
+            document.getElementById('list').appendChild(_li)
+            inp.value = null
+            inp.focus()
+        }
+    }
+
+
+    function _del(s) {
+        console.log(s.checked);
+        let _child = s.nextElementSibling.children
+        if (s.checked) {
+            console.log(_child[0]);
+            _child[0].style.width = '100%'
+        } else {
+            _child[0].style.width = '0'
+
+        }
+    }
+
+    function _close(s){
+        s.parentElement.classList.add('close')
+        setTimeout(() => {
+            s.parentElement.remove()
+
+        }, 1000);
+    }
+    </script>
+</body>
+</html>
